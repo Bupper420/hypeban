@@ -1,10 +1,11 @@
 import os
+from datetime import datetime
 
 def show_help():
     print('''
     Usage: hypeban -[option]
 
-    Accepted date formats: [YYYY-MM-DD], [DD-MM-YYYY], [MM-DD]
+    Accepted date formats: [YYYY-MM-DD], [DD-MM-YYYY]
 
         --h, -help                  Display this menu
         --a, -about                 See more program information
@@ -52,6 +53,16 @@ while True:
     
     elif (command == "clear"):
         os.system("clear")
+
+    elif command.startswith("since "):
+        date_string = command.split(" ")[-1]
+
+        # Date type 1
+        print("Date input:", date_string)
+        then = datetime.strptime(date_string, "%Y-%m-%d")
+        now = datetime.now()
+        days_since = (now - then).days
+        print("Days since:", days_since)
 
     else:
         print("Command not found")
