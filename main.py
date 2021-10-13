@@ -46,7 +46,7 @@ while True:
             Example 2:
                 > since 01-01-2000
 
-                Output: 7,955 days since 01-01-2000
+                Output: 7,926 days since 01-31-2000
 
 
          ''')
@@ -56,13 +56,23 @@ while True:
 
     elif command.startswith("since "):
         date_string = command.split(" ")[-1]
+        date_string_elements = date_string.split("-")
 
-        # Date type 1
-        print("Date input:", date_string)
-        then = datetime.strptime(date_string, "%Y-%m-%d")
-        now = datetime.now()
-        days_since = (now - then).days
-        print("Days since:", days_since)
+        if len(date_string_elements[0]) == 4: 
+            # Date type 1 (YYYY-MM-DD)
+            print("Date input:", date_string)
+            then = datetime.strptime(date_string, "%Y-%m-%d")
+            now = datetime.now()
+            days_since = (now - then).days
+            print("Days since:", days_since)
+
+        else:
+            # Date type 2 (DD - MM - YYYY)
+            print("Date input:", date_string)
+            then = datetime.strptime(date_string, "%m-%d-%Y")
+            now = datetime.now()
+            days_since = (now - then).days
+            print("Days since: ", days_since)
 
     else:
         print("Command not found")
