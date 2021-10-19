@@ -5,7 +5,7 @@ def show_help():
     print('''
     Usage: hypeban -[option]
 
-    Accepted date formats: [YYYY-MM-DD], [DD-MM-YYYY]
+    Accepted date formats: [YYYY-MM-DD], [MM-DD-YYYY]
 
         --h, -help                  Display this menu
         --a, -about                 See more program information
@@ -40,13 +40,13 @@ while True:
 
             Example 1:
                 > since 1969-07-20
-
-                Output: 19,077 days since 1969-07-20
+                Date input: 1969-07-20
+                Output: 19078
 
             Example 2:
-                > since 01-01-2000
-
-                Output: 7,926 days since 01-31-2000
+                > since 01-31-2000
+                Date input: 01-31-200
+                Output: 7926
 
 
          ''')
@@ -56,20 +56,28 @@ while True:
 
     elif command.startswith("since "):
         date_string = command.split(" ")[-1]
-        date_string_elements = date_string.split("-")
+        includes_dashes = False
 
-        if len(date_string_elements[0]) == 4: 
+        if "-" in date_string:
+            date_string_elements = date_string.split("-")
+            includes_dashes = True
+        else:
+            print("Invalid date format.")
+
+
+
+        if includes_dashes and len(date_string_elements[0]) == 4: 
             # Date type 1 (YYYY-MM-DD)
-            print("Date input:", date_string)
             then = datetime.strptime(date_string, "%Y-%m-%d")
+            print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
             days_since = (now - then).days
             print("Days since:", days_since)
 
-        else:
+        elif includes_dashes and len(date_string_elements[-1]) == 4:
             # Date type 2 (DD - MM - YYYY)
-            print("Date input:", date_string)
             then = datetime.strptime(date_string, "%m-%d-%Y")
+            print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
             days_since = (now - then).days
             print("Days since: ", days_since)
