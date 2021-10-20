@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-
+from dateoperations import contains_dashes, days_since_date
 def show_help():
     print('''
     Usage: hypeban -[option]
@@ -56,39 +56,23 @@ while True:
 
     elif command.startswith("since "):
         date_string = command.split(" ")[-1]
-        includes_dashes = False
-
-        if "-" in date_string:
-            date_string_elements = date_string.split("-")
-            includes_dashes = True
-        else:
-            print("Invalid date format.")
+        includes_dashes = contains_dashes(date_string)
+        if includes_dashes: date_string_elements = date_string.split("-")
 
 
 
         if includes_dashes and len(date_string_elements[0]) == 4: 
-            then = datetime.strptime(date_string, "%Y-%m-%d")
-            print("Date input:", then.strftime("%d %B %Y"))
-            now = datetime.now()
-            days_since = (now - then).days
-            print("Days since: ", days_since)
+            result = days_since_date(date_string, "%Y-%m-%d")
+            print("Days since:", result)
 
         elif includes_dashes and len(date_string_elements[-1]) == 4:
-            then = datetime.strptime(date_string, "%m-%d-%Y")
-            print("Date input:", then.strftime("%d %B %Y"))
-            now = datetime.now()
-            days_since = (now - then).days
-            print("Days since: ", days_since)
+            result = days_since_date(date_string, "%m-%d-%Y")
+            print("Days since:", result)
 
     elif command.startswith("until "):
         date_string = command.split(" ")[-1]
-        includes_dashes = False
-
-        if "-" in date_string:
-            date_string_elements = date_string.split("-")
-            includes_dashes = True
-        else:
-            print("Invalid date format.")
+        includes_dashes = contains_dashes(date_string)
+        if includes_dashes: date_string_elements = date_string.split("-")
 
 
 
