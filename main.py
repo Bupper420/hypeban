@@ -29,14 +29,14 @@ while True:
             hypeban, hp
 
         SYNOPSIS
-            Perform calander date operations using UNIX-formatted date strings.
+            Perform calender date operations using UNIX-formatted date strings.
 
         DESCRIPTION
         A terminal-based program that calculates days left until a given date that parses DateStrings
          in multiple UNIX-compliant formats created by Bupper
          
         USAGE
-            Enter a date as it follows.
+            Enter a date as follows.
 
             Example 1:
                 > since 1969-07-20
@@ -72,7 +72,7 @@ while True:
             print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
             days_since = (now - then).days
-            print("Days since:", days_since)
+            print("Days since: ", days_since)
 
         elif includes_dashes and len(date_string_elements[-1]) == 4:
             # Date type 2 (DD - MM - YYYY)
@@ -81,6 +81,34 @@ while True:
             now = datetime.now()
             days_since = (now - then).days
             print("Days since: ", days_since)
+
+    elif command.startswith("until "):
+        date_string = command.split(" ")[-1]
+        includes_dashes = False
+
+        if "-" in date_string:
+            date_string_elements = date_string.split("-")
+            includes_dashes = True
+        else:
+            print("Invalid date format.")
+
+
+
+        if includes_dashes and len(date_string_elements[0]) == 4: 
+            # Date type 1 (YYYY-MM-DD)
+            then = datetime.strptime(date_string, "%Y-%m-%d")
+            print("Date input:", then.strftime("%d %B %Y"))
+            now = datetime.now()
+            days_until = (then - now).days
+            print("Days until: ", days_until)
+
+        elif includes_dashes and len(date_string_elements[-1]) == 4:
+            # Date type 2 (DD - MM - YYYY)
+            then = datetime.strptime(date_string, "%m-%d-%Y")
+            print("Date input:", then.strftime("%d %B %Y"))
+            now = datetime.now()
+            days_until = (then - now).days
+            print("Days until: ", days_until)
 
     else:
         print("Command not found")
