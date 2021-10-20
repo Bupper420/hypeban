@@ -67,7 +67,6 @@ while True:
 
 
         if includes_dashes and len(date_string_elements[0]) == 4: 
-            # Date type 1 (YYYY-MM-DD)
             then = datetime.strptime(date_string, "%Y-%m-%d")
             print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
@@ -75,7 +74,6 @@ while True:
             print("Days since: ", days_since)
 
         elif includes_dashes and len(date_string_elements[-1]) == 4:
-            # Date type 2 (DD - MM - YYYY)
             then = datetime.strptime(date_string, "%m-%d-%Y")
             print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
@@ -95,7 +93,6 @@ while True:
 
 
         if includes_dashes and len(date_string_elements[0]) == 4: 
-            # Date type 1 (YYYY-MM-DD)
             then = datetime.strptime(date_string, "%Y-%m-%d")
             print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
@@ -103,12 +100,14 @@ while True:
             print("Days until: ", days_until)
 
         elif includes_dashes and len(date_string_elements[-1]) == 4:
-            # Date type 2 (DD - MM - YYYY)
             then = datetime.strptime(date_string, "%m-%d-%Y")
             print("Date input:", then.strftime("%d %B %Y"))
             now = datetime.now()
             days_until = (then - now).days
             print("Days until: ", days_until)
+
+    elif command == "exit":
+        break
 
     else:
         print("Command not found")
