@@ -21,3 +21,6 @@ in multiple UNIX-compliant formats created by Bupper
     > since 01-31-2000
     Date input: 01-31-200
     Output: 7926
+
+## LICENSE
+GNU GENERAL PUBLIC LICENSE v3.0
