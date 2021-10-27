@@ -22,12 +22,12 @@ in multiple UNIX-compliant formats created by Bupper
     Date input: 01-31-2000
     Output: 7926
 
-#### Example 1:
+#### Example 3:
     > until 2021-10-31
     Date input: 2021-10-31
     Output: 19078
 
-#### Example 2:
+#### Example 4:
     > since 10-31-2021
     Date input: 10-31-2021
     Output: 7926
