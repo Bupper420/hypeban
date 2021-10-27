@@ -19,7 +19,17 @@ in multiple UNIX-compliant formats created by Bupper
 
 #### Example 2:
     > since 01-31-2000
-    Date input: 01-31-200
+    Date input: 01-31-2000
+    Output: 7926
+
+#### Example 1:
+    > until 2021-10-31
+    Date input: 2021-10-31
+    Output: 19078
+
+#### Example 2:
+    > since 10-31-2021
+    Date input: 10-31-2021
     Output: 7926
 
 ## LICENSE
