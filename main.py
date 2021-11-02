@@ -69,7 +69,17 @@ if args.about:
 
 if args.since:
     date_string = args.since
-    print("User entered:", args.since)
+    includes_dashes = contains_dashes(date_string)
+    if includes_dashes: date_string_elements = date_string.split("-")
+
+    if includes_dashes and len(date_string_elements[0]) == 4: 
+        result = days_since_date(date_string, "%Y-%m-%d")
+        print("Days since:", result)
+
+    elif includes_dashes and len(date_string_elements[-1]) == 4:
+        result = days_since_date(date_string, "%m-%d-%Y")
+        print("Days since:", result)
+        print("User entered:", args.since)
 
 if args.until:
     date_string = args.until
