@@ -1,8 +1,7 @@
-import os
+#!/usr/bin/python3
 import argparse
 from datetime import datetime
 from dateoperations import contains_dashes, days_since_date, days_until_date
-from config import show_help
 
 parser = argparse.ArgumentParser()
 
@@ -14,7 +13,7 @@ args = parser.parse_args()
 if args.about:
     print("A terminal-based program that calculates days left until a given date that parses DateStrings in multiple UNIX-compliant formats created by Bupper")
 
-if args.since:
+elif args.since:
     date_string = args.since
     includes_dashes = contains_dashes(date_string)
     if includes_dashes: date_string_elements = date_string.split("-")
@@ -27,12 +26,10 @@ if args.since:
         result = days_since_date(date_string, "%m-%d-%Y")
         print("Days since:", result)
 
-if args.until:
+elif args.until:
     date_string = args.until
     includes_dashes = contains_dashes(date_string)
     if includes_dashes: date_string_elements = date_string.split("-")
-
-
 
     if includes_dashes and len(date_string_elements[0]) == 4: 
         result = days_until_date(date_string, "%Y-%m-%d")
@@ -41,3 +38,6 @@ if args.until:
     elif includes_dashes and len(date_string_elements[-1]) == 4:
         result = days_until_date(date_string, "%m-%d-%Y")
         print("Days until:", result)
+
+else:
+    print("No arguments were entered, type hypeban [-h] for help.")
