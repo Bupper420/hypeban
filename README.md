@@ -7,7 +7,7 @@ in multiple UNIX-compliant formats created by Bupper
     hypeban, hp
 
 ## SYNOPSIS
-    Perform calender date operations using UNIX-formatted date strings.
+    Perform calendar date operations using UNIX-formatted date strings.
 
 ## USAGE
     Enter a date as follows.
